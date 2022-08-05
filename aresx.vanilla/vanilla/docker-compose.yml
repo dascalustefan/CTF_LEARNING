@@ -1,0 +1,19 @@
+version: "3"
+services:
+  app:
+    hostname: vanilla.hub
+    build: ./app
+    ports:
+      - 3002:80
+    restart: always
+    environment:
+      TOKEN: ${TOKEN:-super_secret_token}
+      FLAG: ${FLAG:-fake_flag}
+  bot:
+    build: ./bot
+    ports:
+      - 3003:8000
+    privileged: true
+    restart: always
+    environment:
+      TOKEN: ${TOKEN:-super_secret_token}
